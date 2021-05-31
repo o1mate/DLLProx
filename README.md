@@ -13,7 +13,7 @@ Hamachi Service | LMIGuardianDll.dll
 ManyCam | P7x32.dll
 Citrix | ctxmui.dll
 
-## DLL Proxying & Persistence concept :
+## DLL Proxying & Persistence concept
 The goal is to use programs that automatically run on startup.
 
 There are two techniques, generally if the first one fails you will want to try the other one.
