@@ -1,19 +1,15 @@
-# DLLProx
+# DLL Proxying
 DLL Proxying techniques, and more
 
 ## List of successfully backdoored programs (so far) :
 
-                             5
-        +-------------------------------------------+
-        |       NAME         |         DLL          |
-        |-------------------------------------------|
-        | Lightshot.exe      | DXGIODScreenshot.dll |  (Lightshot)
-        | AcroRd32.exe       | BIB.dll              |  (Acrobat Reader)
-        | LMIGuardianSvc.exe | LMIGuardianDll.dll   |  (Hamachi service)
-        | ManyCam.exe        | P7x32.dll            |  (ManyCam)
-        | concentr.exe       | ctxmui.dll           |  (Citrix)
-        +-------------------------------------------+
-
+Program Name | DLL
+-------------| ----
+Lightshot | DXGIODScreenshot.dll
+Acrobat Reader | BIB.dll
+Hamachi Service | LMIGuardianDll.dll
+ManyCam | P7x32.dll
+Citrix | ctxmui.dll
 
 ## DLL Proxying & Persistence concept :
 The goal is to use programs that automatically run on startup.
@@ -26,7 +22,7 @@ The two common steps for both techniques are :
 
 ### **Technique 1**
 
-  Technique 1 is based on the idea that the DLL exists, and is loaded by the program. 
+Technique 1 is based on the idea that the DLL exists, and is loaded by the program. 
 
 In Procmon, you can check this with the "*Result*" column being set to "*SUCCESS*".
 
@@ -91,10 +87,30 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved) {
 6. Name your DLL with the original legitimate DLL name (without the \_orig), and place it in the same folder.
 7. Start the program and see if it worked.
 
+### **Technique 2**
 
+Technique 2 is based on the idea that the DLL doesn't exist where the program calls it. 
+
+In Procmon, you can check this with the "*Result*" column being set to "*NAME NOT FOUND*".
+Using Procmon, you should also check if the *Path* column matches with the location of the installation folder of the program
+
+3. Look for the DLL inside the System32 folder
+4. Generate the pragma comment linkers from that DLL
+5. Add them to your malicious DLL and build it
+6. Place the DLL inside within the folder specified by the "*Path*" column on Procmon (where the DLL wasn't found)
+7. Be sure names match (case sensitive)
+8. Start the program and see if it worked
 
 ## Consequences
 
 Now everytime the program is going to run, assuming you have chosen a correct DLL and that your own DLL is working, it is going to call your malicious DLL, and will continue to owrk since your DLL exports all the same functions that the legit DLL exports.
 
 Since it is a program that is ran on startup, your DLL will be called on startup and persistence is achieved.
+
+
+### Troubleshoot
+There are two main problems that can occur with this technique:
+1. The program didn't start properly or crashed
+2. The program started but nothing happened
+
+For both case, it means that you picked the wrong DLL, and that you have to try with another one.
