@@ -3,7 +3,7 @@ This README file will cover two techniques to perform DLL Proxying.
 
 [This article](https://www.ired.team/offensive-security/persistence/dll-proxying-for-persistence) gives more details about the concept of DLL Proxying.
 
-## List of successfully backdoored programs (so far) :
+## List of successfully backdoored programs (so far)
 
 Program Name | DLL
 -------------| ----
@@ -101,7 +101,7 @@ Using Procmon, you should also check if the **Path** column matches with the loc
 In my script you can use the `--system32` option to do it automatically.
 
 6. Add the generated comments to your malicious DLL and build it
-7. Place the DLL inside within the folder specified by the "*Path*" column on Procmon (where the DLL wasn't found)
+7. Place the DLL within the folder specified by the **Path** column on Procmon (where the DLL wasn't found)
 8. Be sure names match (case sensitive)
 9. Start the program and see if it worked
 
