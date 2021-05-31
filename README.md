@@ -1,5 +1,7 @@
 # DLL Proxying
-DLL Proxying techniques, and more
+This README file will cover two techniques to perform DLL Proxying.
+
+[This article](https://www.ired.team/offensive-security/persistence/dll-proxying-for-persistence) gives more details about the concept of DLL Proxying.
 
 ## List of successfully backdoored programs (so far) :
 
