@@ -32,7 +32,8 @@ In Procmon, you can check this with the **Result** column being set to **SUCCESS
 
 (or use my script to automate this step and step 4)
 
-4. Generate the pragma comment linkers for you to implement into your malicious DLL
+4. Write the pragma comment linkers from the exported functions for you to implement into your malicious DLL
+
 It should look like :
 
 ```C
