@@ -24,7 +24,7 @@ The two common steps for both techniques are :
 
 Technique 1 is based on the idea that the DLL exists, and is loaded by the program. 
 
-In Procmon, you can check this with the "*Result*" column being set to "*SUCCESS*".
+In Procmon, you can check this with the **Result** column being set to **SUCCESS**.
 
 3. Once you picked your working DLL, use a tool such as DLLExportViewer to export the legit DLL's functions 
 
@@ -33,7 +33,7 @@ In Procmon, you can check this with the "*Result*" column being set to "*SUCCESS
 4. Generate the pragma comment linkers for you to implement into your malicious DLL
 It should look like :
 
-    #pragma comment(linker,"/export:LegitDLLFunctionName=DLLFileName_orig.LegitDLLFunctionName,@ordinalNumber")
+    #pragma comment(linker,"/export:FUNCTION_NAME=DLLFileName_orig.FUNCTION_NAME,@ORDINAL")
 
 5. Create your DLL with the code that you want to execute, here's an example :
 
@@ -41,7 +41,7 @@ It should look like :
 #pragma once
 
 // Add the generated comments here
-// # pragma comment(linker,"/export:LegitDLLFunctionName=DLLFileName_orig.LegitDLLFunctionName,@ordinalNumber")
+// # pragma comment(linker,"/export:FUNCTION_NAME=DLLFileName_orig.FUNCTION_NAME,@ORDINAL")
 // .....
 #include <stdio.h>
 #include <string.h>
@@ -91,15 +91,22 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved) {
 
 Technique 2 is based on the idea that the DLL doesn't exist where the program calls it. 
 
-In Procmon, you can check this with the "*Result*" column being set to "*NAME NOT FOUND*".
-Using Procmon, you should also check if the *Path* column matches with the location of the installation folder of the program
+In Procmon, you can check this with the **Result** column being set to **NAME NOT FOUND**.
+
+Using Procmon, you should also check if the **Path** column matches with the location of the installation folder of the program
 
 3. Look for the DLL inside the System32 folder
-4. Generate the pragma comment linkers from that DLL
-5. Add them to your malicious DLL and build it
-6. Place the DLL inside within the folder specified by the "*Path*" column on Procmon (where the DLL wasn't found)
-7. Be sure names match (case sensitive)
-8. Start the program and see if it worked
+4. Generate the pragma comment linkers from that DLL, but this time for the function name, specify entire path like such :
+
+```C
+#pragma comment(linker,"/export:FUNCTION_NAME=C:\\Windows\\System32\\FILENAME.dll.FUNCTION_NAME,@ORDINAL")
+```
+In my script you can use the `--system32` option to do it automatically.
+
+6. Add the generated comments to your malicious DLL and build it
+7. Place the DLL inside within the folder specified by the "*Path*" column on Procmon (where the DLL wasn't found)
+8. Be sure names match (case sensitive)
+9. Start the program and see if it worked
 
 ## Consequences
 
