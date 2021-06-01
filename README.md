@@ -6,7 +6,7 @@ This README file will cover two techniques to perform DLL Proxying.
 ## List of successfully backdoored programs (so far)
 
 Program Name | DLL | Requires admin rights
--------------| ---------------------------
+-------------| ----|----------------------
 Lightshot | DXGIODScreenshot.dll | Yes
 Acrobat Reader | BIB.dll | Yes
 Hamachi Service | LMIGuardianDll.dll | Yes
