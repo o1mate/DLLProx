@@ -5,13 +5,13 @@ This README file will cover two techniques to perform DLL Proxying.
 
 ## List of successfully backdoored programs (so far)
 
-Program Name | DLL
--------------| ----
-Lightshot | DXGIODScreenshot.dll
-Acrobat Reader | BIB.dll
-Hamachi Service | LMIGuardianDll.dll
-ManyCam | P7x32.dll
-Citrix | ctxmui.dll
+Program Name | DLL | Requires admin rights
+-------------| ---------------------------
+Lightshot | DXGIODScreenshot.dll | Yes
+Acrobat Reader | BIB.dll | Yes
+Hamachi Service | LMIGuardianDll.dll | Yes
+ManyCam | P7x32.dll | Yes
+Citrix | ctxmui.dll | Yes
 
 ## DLL Proxying & Persistence concept
 The goal is to use programs that automatically run on startup.
