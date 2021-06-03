@@ -19,6 +19,6 @@ dllFile = pefile.PE(args.file)
 for export in dllFile.DIRECTORY_ENTRY_EXPORT.symbols:
 	if export.name:
 		if args.system32:
-			print('#pragma comment(linker,\"export:{}=C:\\\\Windows\\\\System32\\\\{}.dll.{},@{}\")'.format(export.name.decode(), filename, export.name.decode(), export.ordinal))
+			print('#pragma comment(linker,\"/export:{}=C:\\\\Windows\\\\System32\\\\{}.dll.{},@{}\")'.format(export.name.decode(), filename, export.name.decode(), export.ordinal))
 		else:
-			print('#pragma comment(linker,\"export:{}={}_orig.{},@{}\")'.format(export.name.decode(), filename, export.name.decode(), export.ordinal))
+			print('#pragma comment(linker,\"/export:{}={}_orig.{},@{}\")'.format(export.name.decode(), filename, export.name.decode(), export.ordinal))
