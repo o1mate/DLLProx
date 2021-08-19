@@ -107,9 +107,9 @@ In my script you can use the `--system32` option to do it automatically.
 
 ## Consequences
 
-Now everytime the program is going to run, assuming you have chosen a correct DLL and that your own DLL is working, it is going to call your malicious DLL, and will continue to owrk since your DLL exports all the same functions that the legit DLL exports.
+Now everytime the program is going to run, assuming you have chosen a correct DLL and that your own DLL is working, it is going to call your malicious DLL, and will continue to work since your DLL exports all the same functions that the legit DLL exports.
 
-Since it is a program that is ran on startup, your DLL will be called on startup and persistence is achieved.
+As the targeted program runs on startup, your DLL will also be called on startup and persistence is achieved.
 
 
 ### Troubleshoot
